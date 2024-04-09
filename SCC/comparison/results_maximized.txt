@@ -1,0 +1,3 @@
+Epistatic interactions:
+Loci	Chi-square	P value
+1("M0b") 0("M0a") 	54.4518	5.64174e-009
