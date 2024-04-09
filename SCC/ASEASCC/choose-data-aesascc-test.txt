@@ -1,0 +1,24 @@
+setwd("./aesascc-test")
+library(aesascc)
+#library(aesascc)
+library(stringr)
+print("Please select the cs data:") 
+sccsamples<-read.csv(file.choose())  # choose the data
+print("Please select the mv data:") 
+mvsccsamples<-read.csv(file.choose())  # choose the mv data
+consistencythreshold<-0
+coveragethreshold<-0
+maxnumofconditions<-1
+startesascctime<-Sys.time()  # start timing
+aesasccresult<-aesascc(consistencythreshold,coveragethreshold,maxnumofconditions,sccsamples,mvsccsamples)
+endesascctime<-Sys.time()  # end timing
+analysistime<-endesascctime-startesascctime  # calculate the time
+extractanalysistime<-format(analysistime,format="%M")  # extract time
+write.table("aesascc:",'./result/aesasccresult.txt',append=T,col.names=F,row.names=F,eol='\n')
+write.table("consistencythreshold:",'./result/aesasccresult.txt',append=T,col.names=F,row.names=F,eol='\n')
+write.table(consistencythreshold,'./result/aesasccresult.txt',append=T,col.names=F,row.names=F,eol='\n')
+write.table("maxnumofconditions:",'./result/aesasccresult.txt',append=T,col.names=F,row.names=F,eol='\n')
+write.table(maxnumofconditions,'./result/aesasccresult.txt',append=T,col.names=F,row.names=F,eol='\n')
+write.table("The total time of aesascc analysis:",'./result/aesasccresult.txt',append=T,col.names=F,row.names=F,eol='\n')
+write.table(extractanalysistime,'./result/aesasccresult.txt',append=T,col.names=F,row.names=F,eol='\n')
+write.csv(aesasccresult,'./result/aesasccresult.csv',append=T,col.names=F,row.names=F)
